@@ -1,0 +1,134 @@
+	<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Expense Manager</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+  <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" th:href="@{/css/main.css}"
+	href="../../css/main.css" />
+
+</head>
+<body>
+
+	<nav class="navbar navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Spring Boot</a>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Home</a></li>
+					<li><a href="#about">About</a></li>
+				</ul>
+				 <ul class="nav navbar-nav navbar-right">
+    				  <li><a th:text="${user}"><span class="glyphicon glyphicon-user"></span></a></li>
+   				   <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+			 	</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container">
+ 	<div class="well"><h3>Expense Manager Report</h3></div>
+	</div >	
+	<div class="container" id ="expenselist">
+	 <table  class="table table-striped table-hover">
+	
+	 <thead>
+      <tr>
+      
+          <th>ID</th>
+           <th>User Name</th>
+          <th>Amount Paid</th>
+          <th>Description</th>
+           <th>Date</th>
+      	  <th>Expense Category</th>
+      	 
+        <th></th>
+      </tr>
+      </thead>
+    	  <tr th:each="l : ${list}" >
+    	    <td th:text="${l.expenseId}"> Neeush</td>
+    	    <td th:text="${l.userId}"> neeush@gmail</td>
+        <td th:text="${l.expAmount}"> neeush@gmail</td>
+        <td th:text="${l.expenseType}"> neeush@gmail</td>
+         <td th:text="${l.expDate}"> neeush@gmail</td>
+        <td th:text="${l.expDescription}"> neeush@gmail</td>
+        <td>
+          <a th:href="@{${l.expDocId}}">View</a>
+        </td>
+      </tr>
+      <caption>Expenses for selected month</caption>
+    </table>
+    </div>
+	<!-- /.container -->
+	</br>
+	</br>
+	</br>
+	<form action="/familyexpenses" enctype="multipart/form-data" method="post">
+	<div class="container">
+  	<div class="well"><h3>Add Expense</h3></div>	
+		<table class="table table-striped">
+
+		<tr>
+			<td>Expense Category</td>
+			<td>
+			<select name="expenseType">
+                         <option value=""> -- </option>
+                         <option value="Vegtables" label="Vegtables"> -- </option>
+                         <option value="Grocery" label="Grocery"> -- </option>
+                         <option value="Meat" label="Meat"> -- </option>
+                         <option value="Home Stuff" label="Home Stuff"> -- </option>
+                         <option value="Food" label="Food"> -- </option>
+                         <option value="Others" label="Others"> -- </option>
+                 </select>
+			</td>
+		</tr>
+		<tr>
+			<td>Expense Amount</td>
+			<td><input type="text" name="expAmount" required></td>
+		</tr>
+		<tr>
+			<td>Expense Description</td>
+			<td><input type="text" name="expDescription"></td>
+		</tr>
+		<tr>
+			<td>Paid by</td>
+			<!-- <td><input type="text" name="userId" required></td> -->
+			<td><select name="userId">
+                         <option value=""> -- </option>
+                         <option value="Neeush" label="Neeush"> -- </option>
+                         <option value="Greeshma" label="Greeshma"> -- </option>
+                         <option value="Daddy" label="Daddy"> -- </option>
+                         <option value="Mommy" label="Mommy"> -- </option>
+                         <option value="Varsha" label="Varsha"> -- </option>
+                         <option value="Arun" label="Arun"> -- </option>
+                 </select>
+            </td>
+		</tr>
+		<tr>
+			<td>Paid on</td>
+			<td><input type="date" name="paidDate" required></td>
+		</tr>
+		<tr>
+			<td>File to upload :</td>
+			<td><input type="file" name="file" /></td>
+		</tr>
+		</table>
+		
+	</div>
+	<div class="container">
+	<input type="submit" value="Submit" class="btn btn-primary"/>
+           <!-- <a class="btn btn-default" href="/add-todo">Add Expense</a> --> 
+    </div>
+	</form>
+	</br>
+
+
+
+</body>
+</html>
